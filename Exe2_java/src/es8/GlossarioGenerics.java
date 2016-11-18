@@ -1,6 +1,5 @@
 package es8;
 
-import java.awt.List;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -15,7 +14,7 @@ Scrivi un main in cui fai un po' di prove.
  */
 
 
-class Entry<T extends Comparable, S> implements Comparable<Entry>{
+class Entry<T extends Comparable<T>, S> implements Comparable<Entry<T,S>>{
 	T key;
 	S value;
 	
@@ -38,12 +37,12 @@ class Entry<T extends Comparable, S> implements Comparable<Entry>{
 	}
 
 	@Override
-	public int compareTo(Entry o) {
+	public int compareTo(Entry<T,S> o) {
 		return key.compareTo(o.key);
 	}
 }
 
-class Glossario<T extends Comparable, S>{
+class Glossario<T extends Comparable<T>, S>{
 	LinkedList<Entry<T,S>> gloss;
 	
 	public Glossario(){
@@ -74,7 +73,7 @@ class Glossario<T extends Comparable, S>{
 	
 	public String toString(){
 		String buff = "";
-		Entry e;
+		Entry<T,S> e;
 		for(Iterator<Entry<T,S>> it = gloss.iterator(); it.hasNext();){
 			e = it.next();
 			buff = buff + " " + e.key.toString() + ": " + e.value.toString();
