@@ -23,10 +23,10 @@ class Doppio extends Function<Integer, Integer>{
 }
 
 
-class StringLength extends Function<Integer, String>{
+class StringLength extends Function<Integer, Object>{
 	@Override
-	public Integer compute(String o) {
-		return o.length();
+	public Integer compute(Object o) {
+		return o.toString().length();
 	}
 }
 

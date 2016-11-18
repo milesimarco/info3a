@@ -31,7 +31,19 @@ public class Es9main {
 		System.out.print("Dopo: ");
 		System.out.println(array);
 		
-		//TODO: seconda parte -> array di studenti
+		//seconda parte: array di studenti
+		System.out.println("\nSeconda parte:");
+		ArrayList<Studente> stud = new ArrayList<>();
+		stud.add(new Studente("Nanniman"));
+		stud.add(new Studente("Balduz"));
+		stud.add(new Studente("Gamba"));
+		System.out.println(stud);
+		a.apply(stud, strlen);
+		System.out.println(stud);
+		
+		//per far funzionare anche la classe studente ho ridefinito StringLength extends Function<Integer, String>
+		//in StringLength extends Function<Integer, Object> e chiamato toString() sull'oggetto ricevuto
+
 	}
 }
 
@@ -39,12 +51,24 @@ public class Es9main {
 
 abstract class Persona implements Comparable<Persona>{
 	String nome;
+	Persona(String nome){
+		this.nome = nome;
+	}
 }
 
 class Studente extends Persona{
+	
+	Studente(String nome) {
+		super(nome);
+	}
+
 	@Override
 	public int compareTo(Persona o) {
 		return nome.compareTo(o.nome);
+	}
+	
+	public String toString(){
+		return nome;
 	}
 	
 }
