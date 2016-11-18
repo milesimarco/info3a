@@ -55,7 +55,7 @@ class Glossario<T extends Comparable<T>, S>{
 		Entry<T,S> n = new Entry<T,S>(key, value);
 		int indx = 0;
 		
-		if(!it.hasNext()){	//empty list
+		if(!it.hasNext()){	//empty list (se è vuota viene comunque inserito alla riga 71, questo if è inutile penso)
 			gloss.add(n);
 			return;
 		}
