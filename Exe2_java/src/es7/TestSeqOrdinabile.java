@@ -15,10 +15,19 @@ public class TestSeqOrdinabile{
 		SequenzaOrdinabile<String> s = new SequenzaOrdinabile<String>();
 		s.insert("Hola");
 		s.insert("Estraneo");
+		s.insert("Gamba");
+		s.insert("Celiaco");
 		System.out.println(s.toString());
 		
 		s.sort();
 		System.out.println(s.toString());
+		
+		s.insert("Nuova stringaaa");
+		s.insert("AAAAAAA");
+		System.out.println(s.toString());
+		s.sortOttimizzato();
+		System.out.println(s.toString());
+		
 	}
 }
 
@@ -33,15 +42,15 @@ class SequenzaOrdinabile<T extends Comparable<T>>{
 		arr = (T[]) new Comparable[20];
 	}
 	
-	void insert(Object e){
-		arr[n] = (T) e;
+	public void insert(T e){
+		arr[n] = e;
 		n++;
 	}
 	
 	public String toString(){
 		String buff = "";
 		for(int i = 0;i < n; i++){
-			buff = buff + " " + arr[i].toString();
+			buff = buff + " {" + arr[i].toString() + "}";
 		}
 		return buff;
 	}
@@ -49,7 +58,7 @@ class SequenzaOrdinabile<T extends Comparable<T>>{
 	public void sort(){
 		T tmp;
 		for(int i = 0; i < n-1; i++){
-			for(int j = 0; j < n; j++){
+			for(int j = i+1; j < n; j++){
 				if( arr[i].compareTo(arr[j]) > 0 ){
 					tmp = arr[i];
 					arr[i] = arr[j];
@@ -57,6 +66,27 @@ class SequenzaOrdinabile<T extends Comparable<T>>{
 				}
 			}
 		}
+	}
+	
+	// Versione ottimizzata del bubblesort
+	public void sortOttimizzato() {
+		boolean scambio = true;
+		T temp;
+		int c= 0; // Ad ogni iterazione porto all'ultimo posto il più elevato, quindi al ciclo successivo non controllo più l'ultima posizione
+		while (scambio) {
+			scambio = false;
+			for(int i = 0; i < n-1-c; i++) {
+				if (arr[i].compareTo(arr[i+1]) > 0) {
+					// Scambio
+					temp = arr[i];
+					arr[i] = arr[i+1];
+					arr[i+1] = temp;
+					scambio = true;
+				}
+			}
+			c++;
+		}
+		
 	}
 	
 
