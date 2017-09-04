@@ -7,7 +7,8 @@ int prenumero (int y) {
 }
 
 int coda(int y) {
-	return 2*(y%10);
+	return (y-prenumero(y)*10); // MM
+	// return 2*(y%10); MM
 }
 
 int div7_Iter(int x) {
